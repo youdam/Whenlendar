@@ -1,0 +1,337 @@
+.parent-board-box {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+.child-board-box-tag {
+    margin-right: 5px;
+    width: 100px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px;
+    text-align: center;
+
+}
+    
+
+.child-board-box-title {
+    margin-right: 5px;
+    width: 300px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px 24px;
+    text-decoration: none;
+
+  }
+
+.child-board-box-commentcount {
+    margin-right: 3px;
+    width: 28px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px;
+    padding-left: 5px;
+    text-align: center;
+
+  }
+
+.child-board-box-userid {
+    margin-right: 3px;
+    width: 150px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px;
+    padding-left: 5px;
+    text-align: center;
+  }
+
+.child-board-box-readcount {
+    margin-right: 3px;
+    width: 28px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px;
+    padding-left: 5px;
+    text-align: center;
+  }
+
+
+.child-board-box-time {
+  margin-right: 3px;
+    width: 150px;
+    height: 35px;
+    border: 1px solid rgb(244 233 231);
+    padding: 3px;
+    padding-left: 5px;
+    text-align: center;
+    
+  }
+
+.dambutton{
+    background-color: white; /* sets the background color to white */
+    border: 3px solid rgb(236, 86, 45); /* adds a 2px yellow border */
+    padding: 3px 20px; /* adds padding to the button */
+    font-size: 14px; /* sets the font size */
+    font-weight: bold;
+
+    color:black; /* sets the text color */
+    border-radius: 10px; /* rounds the corners of the button */
+    margin-left: 10px;
+
+}
+
+.dambutton:hover {
+background-color: rgb(236, 86, 45);
+color:white;
+border-color:white;
+}
+
+
+  .damPagination{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top : 7%;
+  }
+
+  .damclick-left {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.damclick-number {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
+.damclick-right {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.profilepage .board-box .parent-board-box{
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 0;
+}
+.profilepage .board-box .parent-board-box div  {
+  margin-right: 0;
+  border: none;
+}
+.profilepage .board-box .parent-board-box .child-board-box-tag{
+  padding : 0;
+}
+
+
+.DamcolDam{
+  flex-direction: column;
+  align-items: center;
+}
+
+.DamCol{
+  columns:auto;
+  justify-content: center;
+
+}
+
+.Damthi{
+  padding-left:26%;
+
+}
+
+.parent-damfigurs{
+  display: flex;
+    flex-wrap: nowrap;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.damone{
+  margin-right: 3px;
+  width: 150px;
+  height: 35px;
+  border: 1px solid rgb(244 233 231);
+  padding: 3px;
+  padding-left: 5px;
+  text-align: center;
+
+}
+
+.damtwo{
+  margin-right: 3px;
+  width: 300px;
+  height: 35px;
+  border: 1px solid rgb(244 233 231);
+  padding: 3px;
+  padding-left: 5px;
+  text-align: center;
+
+}
+
+.damthree {
+  width: 600px;
+  height: 200px;
+  border: 1px solid rgb(244 233 231);
+  text-align: center;
+  background-color:white;
+  padding: 10px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.dam-groupbox-parent {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  }
+
+.dam-groupbox-children {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 5%;
+  }
+  
+.dam-groupbox-groupname {
+  color: blue;
+  text-decoration: none;
+  margin-right: 10px;
+  }
+  
+.dam-groupbox-groupname:hover {
+  color: purple;
+  text-decoration: underline;
+  }
+  
+.dam-groupbox-groupleader {
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+  
+.dam-groupbox-grouptime {
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+  
+.dam-groupbox-buttons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  }
+  
+.dam-groupbox-child-button-note-all, .dam-groupbox-child-button-seccesion {
+  margin-left: 10px;
+  }
+  
+.dam-groupbox-child-button-note-all button, .dam-groupbox-child-button-seccesion button {
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  
+.dam-groupbox-child-button-note-all button:hover, .dam-groupbox-child-button-seccesion button:hover {
+  background-color: rgba(59, 41, 198, 0.669);
+  }
+
+.dam-groupbox-main-parent-same-line{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dam-groupbox-main-child-same-line{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 20%;
+}
+
+.dam-groupbox-main-child-same-line h5{
+  width: 300px;
+}
+
+.dam-groupbox-main-child-same-line-cant h5 {
+  width: 300px;
+  margin-left: 20%;
+}
+
+.dam-groupbox-main-button-for-secesison{
+  margin-left: 100px;
+}
+
+.dam-group-box-board-list-new-board{
+  margin-left: 5%;
+
+}
+
+.dam-group-box-board-list-cannot-enter h5{
+  margin-left: 8%;
+}
+
+.dam-data-is-emty{
+  margin-left: 10%;
+
+}
+
+.dam-manage-member-parent{
+  display: flex;
+}
+
+
+.dam-manage-member-buttons{
+  margin-left: 10px;
+}
+
+.dam-manage-member-buttonone{
+  margin-right: 10px;
+}
+
+
+.dam-faq-buttons-onetwothree{
+  margin-left: 40%;
+}
+
+.dam-faq-small-one{
+  background-color: white; /* sets the background color to white */
+  border: 3px solid rgb(236, 86, 45); /* adds a 2px yellow border */
+  padding: 3px 20px; /* adds padding to the button */
+  font-size: 14px; /* sets the font size */
+  font-weight: bold;
+
+  color:black; /* sets the text color */
+  border-radius: 10px; /* rounds the corners of the button */
+  margin-left: 10px;
+
+}
+
+.dam-faq-small-one:hover {
+background-color: rgb(236, 86, 45);
+color:white;
+border-color:white;
+}

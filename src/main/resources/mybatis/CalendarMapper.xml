@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.when.mapper.CalendarMapper">
+    <!-- 달력 메모 등록 -->
+    <insert id="insertSchedule">
+        INSERT INTO memo_tb(userid, groupname, memo, region, targetdate, color)
+        VALUES (#{userid}, #{groupname}, #{memo}, #{region}, #{targetdate}, #{color})
+    </insert>
+
+    <!-- 달력 메모 불러오기 -->
+    <select id="getSchedules" resultType="ScheduleVo">
+        SELECT no, userid, groupname, memo, region, DATE_FORMAT(targetdate, '%Y.%c.%e') as targetdate, color
+        FROM memo_tb
+        <choose>
+            <when test=" groupname == null ">
+                WHERE userid = #{userid}
+                AND   groupname is null
+            </when>
+            <when test=" groupname != null " >
+                WHERE groupname = #{groupname}
+            </when>
+        </choose>
+                AND   region = #{region}
+    </select>
+
+    <!-- 내가 쓴 메모 불러오기 -->
+    <select id="getAllSchedules" resultType="ScheduleVo">
+        SELECT no, userid, groupname, memo, region, DATE_FORMAT(targetdate, '%Y.%c.%e') as targetdate, color
+        FROM memo_tb
+        <choose>
+            <when test=" groupname == null ">
+                WHERE userid = #{userid}
+                AND   groupname is null
+            </when>
+            <when test=" groupname != null " >
+                WHERE groupname = #{groupname}
+            </when>
+        </choose>
+        ORDER BY no desc
+    </select>
+
+
+    <!-- 일정 삭제 -->
+    <delete id="deleteSchedule">
+        DELETE FROM memo_tb
+        WHERE userid = #{userid}
+        AND   no   = #{no}
+    </delete>
+
+    <!-- 일정 수정 -->
+    <update id="updateSchedules">
+        UPDATE memo_tb
+        SET    memo = #{newMemo}
+        WHERE  userid  = #{userid}
+        AND    no      = #{no}
+    </update>
+    
+
+</mapper>

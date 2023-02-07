@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.when.mapper.InquiryMapper">
+
+    <select id = "getUserRole" parameterType="String" resultType="String">
+    SELECT
+        role
+    FROM member_tb
+    WHERE userid = #{userid}
+
+    </select>
+
+
+    <select id = "inquiryList" parameterType="InquiryVo" resultType="InquiryVo">
+        select
+        no
+        ,grpno
+        ,depth
+        ,userid
+        ,title
+        ,content
+        ,time
+        ,status
+        FROM inquiry_tb
+        WHERE depth = 0
+        <choose>
+            <when test= "userRole.equals('ROLE_USER')">
+            AND userid = #{userId}
+            </when>
+        </choose>
+        ORDER BY no DESC
+    </select>
+
+    <select id="inquiryRead" parameterType="int" resultType="InquiryVo">
+        SELECT * FROM inquiry_tb
+        WHERE no= #{no} OR grpno= #{no}
+        <choose>
+            <when test="userRole.equals('ROLE_USER')">
+
+            </when>
+        </choose>
+        ORDER BY depth ASC
+    </select>
+
+    <insert id="inquiryWrite" parameterType="inquiryVo">
+        INSERT INTO inquiry_tb(no, grpno, title, content, userid, depth, status, userrole, time)
+        VALUES ((COALESCE((SELECT MAX(no) FROM inquiry_tb i), 0)+1), (COALESCE((SELECT MAX(no) FROM inquiry_tb i), 0)+1),  #{title}, #{content}, #{userId}, 0, '읽지않음', #{userRole}, NOW())
+    </insert>
+
+    <insert id="inquiryReply" parameterType="inquiryVo">
+        INSERT INTO inquiry_tb(no, grpno, title, content, userid, depth, status, userrole, time)
+        VALUES ((COALESCE((SELECT MAX(no) FROM inquiry_tb i), 0)+1), #{grpNo},  #{title}, #{content}, #{userId}, (COALESCE((SELECT MAX(depth) FROM inquiry_tb i WHERE grpno=#{grpNo}), 0)+1), '읽지않음', #{userRole}, NOW())
+    </insert>
+
+    <delete id="inquiryDelete" parameterType= "int">
+        DELETE FROM inquiry_tb
+        WHERE no = #{no}
+    </delete>
+
+    <update id="inquiryUpdate" parameterType="inquiryVo">
+        UPDATE inquiry_tb
+        SET title = #{title}
+            ,content = #{content}
+            ,time = NOW()
+        WHERE no= #{no}
+
+
+
+    </update>
+
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.when.mapper.NoteMapper">
+<!--목록조회-->
+    <select id="getNoteList" parameterType="String" resultType="NoteVo">
+        SELECT
+            no,
+            send,
+            recept,
+            title,
+            content,
+            time,
+            CASE WHEN readcheck = 0 THEN '미확인' WHEN  readcheck = 1 THEN '확인' ELSE '오류'
+            END AS readCheckString
+        FROM note_tb
+        WHERE recept = #{userId} AND deleted = 0
+    </select>
+<!--페이징을 위한 카운트 -->
+    <select id="noteCount" parameterType="PageVo" resultType="int">
+        SELECT count(no) FROM note_tb
+        WHERE recept= #{userId} AND deleted = 0
+        <choose>
+            <when test= "option.equals('title') and search !=null" >
+            AND title LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('send') and search !=null" >
+            AND send LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('content') and search !=null" >
+            AND content LIKE CONCAT ('%', #{search}, '%')
+            </when>
+        </choose>
+    </select>
+<!--보낸쪽지함 페이징 카운트 -->
+    <select id="noteSentCount" parameterType="PageVo" resultType="int">
+        select count(no) from note_tb
+        where send= #{userId}
+        <choose>
+            <when test= "option.equals('title') and search !=null" >
+                AND title LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('send') and search !=null" >
+                AND send LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('content') and search !=null" >
+                AND content LIKE CONCAT ('%', #{search}, '%')
+            </when>
+        </choose>
+    </select>
+<!--페이징 적용된 목록조회-->
+    <select id="noteListPage" parameterType="PageVo" resultType="NoteVo">
+        SELECT
+            no,
+            send,
+            recept,
+            title,
+            content,
+            time,
+            CASE WHEN readcheck = 0 THEN '미확인' WHEN  readcheck = 1 THEN '확인' ELSE '오류'
+        END AS readCheckString
+        FROM note_tb
+        WHERE recept = #{userId} AND deleted = 0
+        <choose>
+            <when test= "option.equals('title') and search !=null" >
+                AND title LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('send') and search !=null" >
+                AND send LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('content') and search !=null" >
+                AND content LIKE CONCAT ('%', #{search}, '%')
+            </when>
+        </choose>
+        ORDER BY no desc
+        LIMIT #{displayPost}, #{postNum}
+    </select>
+    <!-- 보낸쪽지함 -->
+    <select id="noteSentList" parameterType="PageVo" resultType="NoteVo">
+        SELECT
+            no,
+            send,
+            recept,
+            title,
+            content,
+            time,
+            CASE WHEN readcheck = 0 THEN '미확인' WHEN  readcheck = 1 THEN '확인' ELSE '오류'
+        END AS readCheckString
+        FROM note_tb
+        WHERE send = #{userId}
+        <choose>
+            <when test= "option.equals('title') and search !=null" >
+                AND title LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('send') and search !=null" >
+                AND recept LIKE CONCAT('%', #{search}, '%')
+            </when>
+            <when test= "option.equals('content') and search !=null" >
+                AND content LIKE CONCAT ('%', #{search}, '%')
+            </when>
+        </choose>
+        ORDER BY no desc
+        LIMIT #{displayPost}, #{postNum}
+    </select>
+<!--쪽지쓰기 Auto increment 대체해서 max함수 사용, nvl 위해 coalesce-->
+    <insert id="noteWrite" parameterType="NoteVo">
+        INSERT INTO note_tb(no, send, recept, title, content, time, readcheck)
+        VALUES ((COALESCE((SELECT MAX(no) FROM note_tb a), 0)+1), #{send}, #{recept}, #{title}, #{content}, NOW(), 0)
+    </insert>
+
+<!--쪽지 읽기-->
+    <select id="noteRead" parameterType="int" resultType="NoteVo">
+        SELECT * FROM note_tb
+        WHERE no = #{no}
+    </select>
+<!-- 수신확인 -->
+    <update id="noteReadCheck">
+        UPDATE note_tb
+        SET readcheck = 1
+        WHERE no = #{no}
+    </update>
+
+
+<!--쪽지삭제 : 보낸쪽지함이 있기에 원본은 db에 보존하되 삭제체크만 하여 조회하지 않도록-->
+    <update id="noteDelete">
+        UPDATE note_tb
+        SET deleted = 1
+        WHERE no= #{no}
+    </update>
+</mapper>

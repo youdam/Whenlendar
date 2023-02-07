@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.when.mapper.UserMapper">
+    <!-- 회원가입 -->
+    <insert id="signup">
+        INSERT INTO member_tb(userid, usernickname, userpw, useremail, role)
+        VALUES (#{userid}, #{usernickname}, #{userpw}, #{useremail}, #{role})
+    </insert>
+
+    <!-- 중복체크 -->
+    <select id="userCheck" resultType="boolean">
+        SELECT IF(COUNT(userid) = 1, 1, 0) FROM member_tb
+        where userid = #{userid}
+    </select>
+
+    <!-- userId 찾기 -->
+    <select id="findByUserid" resultType="MemberVo">
+        SELECT * FROM member_tb
+        where userid = #{userid}
+    </select>
+
+    <!-- 닉네임 변경중 닉네임 중복체크 -->
+    <select id="nicknameCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   deleteUser
+        WHERE  usernickname = #{usernickname}
+    </select>
+
+    <!-- 닉네임 변경 -->
+    <update id="changeUserNickname"  parameterType="MemberVo">
+        UPDATE member_tb
+        SET    usernickname = #{usernickname}
+        WHERE  userid  = #{userid}
+    </update>
+
+    <!-- 비밀번호 변경 -->
+    <update id="changeUserPw">
+        UPDATE member_tb
+        SET    userpw = #{userpw}
+        WHERE  userid  = #{userid}
+    </update>
+
+    <!-- 신규유저 아이디 중복체크 -->
+    <select id="useridCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+    <!-- 탈퇴유저중 중복된 아이디 체크 -->
+    <select id="deleteUserCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   deleteUser
+        WHERE  userid = #{userid}
+    </select>
+
+    <!-- 신규유저 닉네임 중복체크 -->
+    <select id="newNickname" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  usernickname = #{usernickname}
+    </select>
+
+    <!-- 탈퇴유저중 닉네임 중복체크 -->
+    <select id="deleteNickname" resultType="Integer">
+        SELECT count(*)
+        FROM   deleteUser
+        WHERE  usernickname = #{usernickname}
+    </select>
+
+
+    <!-- 신규유저 이메일 중복체크 -->
+    <select id="newEmailCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  useremail = #{useremail}
+    </select>
+
+    <!-- 탈퇴유저중 이메일 중복체크 -->
+    <select id="deleteEmailCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   deleteUser
+        WHERE  useremail = #{useremail}
+    </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="findId" resultType="String">
+        SELECT userid
+        FROM   member_tb
+        WHERE  useremail = #{useremail}
+    </select>
+
+    <!-- 이메일 찾기 -->
+    <select id="findUseremail" resultType="String">
+        SELECT useremail
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+    <!-- 임시비밀번호로 변경 -->
+    <update id="updatePassword">
+        UPDATE member_tb
+        SET userpw = #{userpw}
+        WHERE useremail = #{useremail}
+    </update>
+
+    <!-- 프로필이미지 파일이름, 경로 저장 -->
+    <update id="profileImgUpload">
+        UPDATE member_tb
+        SET   filename = #{filename},
+        filepath = #{filepath}
+        WHERE userid = #{userid}
+    </update>
+
+    <!-- 프로필 이미지 불러오기 -->
+    <select id="callProfileImg" resultType="MemberVo">
+        SELECT filename, filepath
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+    <!-- 유저목록 -->
+    <select id="userList" resultType="MemberResponseVo">
+        SELECT *
+        FROM   member_tb
+        ORDER BY time DESC
+    </select>
+
+    <!-- 회원탈퇴시 외래키 해제 -->
+    <update id="foreignKeyChecks">
+        SET foreign_key_checks = 0
+    </update>
+
+    <!-- 회원탈퇴시 외래키 재설정 -->
+    <update id="foreignKeyCheck">
+        SET foreign_key_checks = 1
+    </update>
+
+    <!-- 회원탈퇴 -->
+    <delete id="userDelete">
+        DELETE FROM member_tb WHERE userid = #{userid}
+    </delete>
+
+    <!-- 탈퇴된 회원테이블로 탈퇴회원 정보 입력-->
+    <insert id="deleteUserInsert">
+        INSERT INTO deleteUser(userid, usernickname, useremail)
+        VALUES (#{userid}, #{usernickname}, #{useremail})
+    </insert>
+
+    <!-- 유저권한 변경-->
+    <update id="roleChange">
+        UPDATE member_tb
+        SET   role = #{role}
+        WHERE userid = #{userid}
+    </update>
+
+
+
+</mapper>

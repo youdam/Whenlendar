@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.when.mapper.UserMapper">
+    <insert id="signup">
+        INSERT INTO member_tb(userid, usernickname, userpw, useremail, role)
+        VALUES (#{userid}, #{usernickname}, #{userpw}, #{useremail}, #{role})
+    </insert>
+
+    <select id="userCheck" resultType="boolean">
+
+        SELECT IF(COUNT(userid) = 1, 1, 0) FROM member_tb
+        where userid = #{userid}
+    </select>
+
+    <select id="findByUserid" resultType="MemberVo">
+        SELECT * FROM member_tb
+        where userid = #{userid}
+    </select>
+
+    <update id="changeUserNickname"  parameterType="MemberVo">
+        UPDATE member_tb
+        SET    usernickname = #{usernickname}
+        WHERE  userid  = #{userid}
+    </update>
+
+    <update id="changeUserPw">
+        UPDATE member_tb
+        SET    userpw = #{userpw}
+        WHERE  userid  = #{userid}
+    </update>
+
+    <select id="useridCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+    <select id="usernicknameCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  usernickname = #{usernickname}
+    </select>
+
+    <select id="useremailCheck" resultType="Integer">
+        SELECT count(*)
+        FROM   member_tb
+        WHERE  useremail = #{useremail}
+    </select>
+
+    <select id="findId" resultType="String">
+        SELECT userid
+        FROM   member_tb
+        WHERE  useremail = #{useremail}
+    </select>
+
+    <select id="findUseremail" resultType="String">
+        SELECT useremail
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+    <update id="updatePassword">
+        UPDATE member_tb
+        SET userpw = #{userpw}
+        WHERE useremail = #{useremail}
+    </update>
+
+    <update id="profileImg">
+        UPDATE member_tb
+        SET   profiledata = #{profileData}
+        WHERE userid = #{userid}
+    </update>
+
+    <update id="profileImgUpload">
+        UPDATE member_tb
+        SET   filename = #{filename},
+              filepath = #{filepath}
+        WHERE userid = #{userid}
+    </update>
+
+    <select id="callProfileImg" resultType="MemberVo">
+        SELECT filename, filepath
+        FROM   member_tb
+        WHERE  userid = #{userid}
+    </select>
+
+
+</mapper>

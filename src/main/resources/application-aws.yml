@@ -1,0 +1,32 @@
+#mysql connection
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://34.64.166.118:3306/green?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: green
+    password: Green801
+  main:
+    allow-circular-references: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: greenwhen2@gmail.com
+    password: fuqnoethtyygwjwb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+        default_batch_fetch_size: 100 # 배치전략을 위해 필요
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

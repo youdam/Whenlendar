@@ -1,0 +1,45 @@
+.dam-create-announce-or-faq-form {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+    
+.dam-create-announce-or-faq-select,
+.damtitle-create-announce-or-faq {
+    flex: 1;
+    margin-right: 10px;
+    }
+    
+.damtitle-create-announce-or-faq {
+    margin-bottom: 10px;
+    }
+    
+.damcontent-create-announce-or-faq {
+    flex: 2;
+    height: 50vh;
+    margin-bottom: 10px;
+    }
+    
+.damtextarea-create-announce-or-faq {
+    width: 100%;
+    height: 100%;
+    }
+    
+    .dambutton {
+    text-align: center;
+    }
+
+.dam-managegroup-groupname{
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: bolder;
+    margin: 5%
+
+}
+.dam-managegroup-ddd{
+
+}
+.dam-managegroup-dd-butons-parents{
+    display: flex;
+    margin-left: 10%;
+}

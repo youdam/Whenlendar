@@ -1,0 +1,38 @@
+server:
+  port:8080
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+#springmvc
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+#multipart
+  servlet:
+    multipart:
+      file-size-threshold: 1MB
+      location: C:/Temp
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  profiles:
+    include: aws
+
+logging:
+  level:
+    com:
+      tutorial: debug
+
+jwt:
+  secret: YXNkZGVzc2UxMjM0d3d3d2VyeWRqc2lqd2lrc2Rsc293c3N3ZHNzd2lrc2Rsc293c3N3ZHNzZGVzc2UxMjM0d3d3d2Vy
+
+#MYBATIS
+mybatis:
+  type-aliases-package: com.green.when.vo
+  mapper-locations: /mybatis/**/*.xml
+
+
+

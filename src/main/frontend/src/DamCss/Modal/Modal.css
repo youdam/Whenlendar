@@ -1,0 +1,246 @@
+.dam-create-group-modal-overlay {
+    position: fixed; /* position the modal in the center of the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* add a semi-transparent black background */
+    display: flex; /* center the modal horizontally and vertically */
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* ensure the modal is on top of all other elements */
+    }
+    
+.dam-create-group-modal-content {
+    background-color: lavenderblush; /* set the background color of the modal */
+    padding: 20px; /* add some padding */
+    border-radius: 10px; /* add rounded corners */
+    box-shadow: 0px 0px 10px #ccc; /* add a subtle drop shadow */
+    width: 50%;
+}
+    
+.dam-create-group-modal-close-button {
+    position: absolute; /* position the close button in the top right corner */
+    top: 10px;
+    right: 10px;
+    font-size: 18px; /* increase the font size for better visibility */
+    cursor: pointer; /* change the cursor to a pointer on hover */
+    }
+    
+.dam-create-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+.dam-create-label{
+    font-weight: bold;
+    margin: 5px;
+    }
+.dam-create-input-grouptitle{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    }
+.dam-group-desc-label{
+    font-weight: bold;
+    margin: 5px;
+    }
+.dam-group-desc-input{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    }
+.dam-create-group-button-submit{
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    }
+
+.dam-halt-or-over-lay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+        
+.dam-halt-or-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;    
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+        
+.dam-halt-or-label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    }
+        
+.dam-halt-or-select-and-option {
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
+    }
+        
+.dam-halt-or-select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    border: none;
+    }
+        
+.dam-halt-or-option {
+    font-size: 1rem;
+    padding: 0.5rem;
+    }
+        
+.dam-halt-or-close-button {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    }
+
+.dam-modal-overlay-to-invite {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+            
+.dam-modal-content-to-invite {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 50%;
+    }
+
+.dam-modal-content-to-invite h2 {
+    margin-bottom: 1rem;
+    }
+    
+            
+.dam-form-invite {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+
+            
+.dam-input-invite-userid {
+    width: 60%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.2rem;
+    border: none;
+}
+.dam-label-invite-whom {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    }
+.dam-label-invite-whom-for-real {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    }
+
+
+.dam-button-yes-invite {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    margin-right: 1rem;
+    }
+
+.error-message{
+    color: red;
+    font-size:  14px;
+    padding-top: 10px;
+} 
+
+.dam-modal-overlay-to-NoteAll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    }
+    
+    .dam-modal-content-to-NoteAll {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 2;
+    width: 40%;
+    }
+    
+    .dam-modal-to-NoteAll-korean{
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 20px;
+    }
+    
+    .dam-modal-to-NoteAll-form {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .dam-modal-to-NoteAll-label {
+    font-size: 18px;
+    padding-bottom: 10px;
+    }
+    
+    .dam-modal-to-NoteAll-input-title,
+    .dam-modal-to-NoteAll-input-content {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    }
+
+    .dam-modal-to-NoteAll-button-submit {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    }
+    
+    .dam-modal-to-NoteAll-close-button {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    }
+    
+    .error-message {
+    color: red;
+    font-size: 14px;
+    padding-top: 10px;
+    }

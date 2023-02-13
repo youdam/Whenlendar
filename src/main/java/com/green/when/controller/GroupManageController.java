@@ -89,7 +89,7 @@ public class GroupManageController {
         Map<String, String> body = new HashMap<>();
         HttpStatus status = HttpStatus.NO_CONTENT; // 잘 됐따 보낼게 없다. 204
         try{
-            System.out.println("이새끼 내보내 : " + userid);
+            System.out.println("얘 내보내 : " + userid);
             GroupManageEntity groupManage = groupManageService.findit(userid, groupname); // 이거 찾아서
             System.out.println("그래서 나가는 managedto :"  + groupManage);
             groupManageService.delete(groupManage);
@@ -131,6 +131,8 @@ public class GroupManageController {
     @PostMapping("/api/invite")
     public ResponseEntity invitiation(@RequestBody NoteDto noteDto){
         String userid = SecurityUtil.getCurrentMemberId();
+
+
         noteDto.setSend(userid);
         NoteEntity note = new NoteEntity(noteDto);
         System.out.println("노트좀 보여줘 " + note);

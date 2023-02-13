@@ -3,7 +3,9 @@ import React from "react";
 import CommentBox from "../CommentBox/CommentBox";
 
 const CommentList = (props) => {
-        console.log('props: ' , props);
+        console.log('CommentList/props: ' , props);
+        console.log('CommentList/props.data: ' , props.data);
+        console.log('CommentList/props.updateCommentList: ' , props.updateCommentList);
 
       
     return (

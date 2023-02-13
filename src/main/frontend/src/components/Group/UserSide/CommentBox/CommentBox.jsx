@@ -104,7 +104,7 @@ const CommentBox = (props) => {
         console.log('Detail/handleDeleteBtnClick/response: ', response);
         console.log('contentNo:', contentNo);
         console.log('Number(contentNo)', Number(contentNo));
-        console.log('대체 어디로 가길래지랄이고 state: { no : Number(contentNo) }',{ no : Number(contentNo) });
+        console.log('대체 어디로 가는거니 state: { no : Number(contentNo) }',{ no : Number(contentNo) });
         //navigate("/page", { state: { no : Number(contentNo) } });
        // window.location.reload(); 
        props.updateCommentList();

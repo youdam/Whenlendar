@@ -20,16 +20,16 @@ const NoteAllUserModal = (props) => {
 
 
 
-        if(!title){
-            setErrorMessage('내용을 입력해 주세요');
+        if(props.Admin === false && !title){
+            setErrorMessage('제목을 입력해 주세요');
             return;
         }
-/*
+
         if(!content){
             setErrorMessage('내용을 입력해 주세요');
             return;
         }
-*/
+
         
         
 

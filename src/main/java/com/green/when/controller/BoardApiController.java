@@ -44,24 +44,48 @@ public class BoardApiController {
         //
         List<BoardDto> boardDtoListForComment = new ArrayList<>();
 
-        for (BoardEntity board : boardList){
 
-       //     System.out.println("cycy : 1. 댓글개수 넣기 start");
+
+        //공지들은 앞으로 뺴둘거라 임시 list (공지 아닌애들이 임시로 들어감)
+        List<BoardDto> boardDtoListForNotNotification = new ArrayList<>();
+        //그냥 공지 전용 list도 만듦
+        List<BoardDto> boardDtoListForNotification = new ArrayList<>();
+
+
+        for (BoardEntity board : boardList) {
+
+            //  System.out.println("cycy : 1. 댓글개수 넣기 start");
             List<CommentEntity> comments = commentService.findByContentno(board.getNo());
-      //      System.out.println("cycy : 2. board.getNo() : " + board.getNo() );
+            //  System.out.println("cycy : 2. board.getNo() : " + board.getNo() );
 
             Long commentCount = Long.valueOf(comments.size());
-        //    System.out.println("cycy : 3. commentCount :  " + commentCount );
+            //  System.out.println("cycy : 3. commentCount :  " + commentCount );
 
             BoardDto boardD = new BoardDto(board);
-        //    System.out.println("cycy : 4 댓글갯수 없는 boardDto : " + boardD);
+            //  System.out.println("cycy : 4 댓글갯수 없는 boardDto : " + boardD);
             boardD.setCommentCount(commentCount);
-        //    System.out.println("cycy : 5 3번+4번 . 즉 boardDto 에 댓글개수 더함 :" + boardD);
+            //  System.out.println("cycy : 5 3번+4번 . 즉 boardDto 에 댓글개수 더함 :" + boardD);
 
-            boardDtoListForComment.add(boardD);
-           // System.out.println("cycy : 6 지금까지 총 list  :" + boardDtoListForComment  );
+            if (boardD.getTag().equals("공지")) {
+                System.out.println("공지랑동일");
+                boardDtoListForNotification.add(boardD);
 
+            } else {
+                System.out.println("공지가 아님");
+                boardDtoListForNotNotification.add(boardD);
+            }
         }
+
+        System.out.println("/get-boardList/공지인 list : " + boardDtoListForNotification);
+        System.out.println("/get-boardList/공지아닌 list : "  + boardDtoListForNotNotification);
+
+        boardDtoListForComment.addAll(boardDtoListForNotification);
+        boardDtoListForComment.addAll(boardDtoListForNotNotification);
+
+        System.out.println(boardDtoListForComment);
+        // System.out.println("cycy : 6 지금까지 총 list  :" + boardDtoListForComment  );
+
+
 
      //   List<BoardDto> boardDtoList = boardList.stream().map(b ->
       //          new BoardDto(b)).collect(Collectors.toList());
@@ -145,7 +169,7 @@ getMapping 되어온 ("boardId") 를, Long boardId 변수로 가져오겠다는 
                                            @PathVariable("groupname") String groupname)throws Exception{
         //일단 받아온 값 체크
         System.out.println("검색하고자 하는 것은? : " + searchQuery);
-        //이제 db를 가야하니까 entity로 만들어 보자 ㅅㅂ 이게되나???
+        //이제 db를 가야하니까 entity로 만들어 보자. 이게되나???
         List<BoardEntity> board = boardService.search(searchQuery, searchQuery, groupname);
         //이제 돌려보내야 하니까 dto 로 list 를 감싸주자
         List<BoardDto> boardDtoList = board.stream().map(b ->

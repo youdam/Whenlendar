@@ -51,8 +51,8 @@ const GroupBox = (props) => {
         <Link
             to = {"/bulletin"}
             state = {{
-                groupname : props.groupname
-            }}
+                groupname : props.groupname 
+               ,  Admin : props.Admin }}
         >
             <div className="dam-groupbox-main-child-same-line">
                 <h5> {props.groupname} </h5>

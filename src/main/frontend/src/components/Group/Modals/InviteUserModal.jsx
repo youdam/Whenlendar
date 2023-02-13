@@ -62,9 +62,13 @@ const InviteUserModal = (props) => {
         window.location.reload();
         }catch ( err ){
             console.log('errrrr');
+            setErrorMessage('아이디를 다시 확인해 주세요');
+            return;
         }
 
     };
+    
+
 
 
 

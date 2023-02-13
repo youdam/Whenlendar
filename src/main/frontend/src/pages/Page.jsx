@@ -45,13 +45,18 @@ const Page = () => {
     
   }, [fig]);    // [id, data]로 바꿔
 
+  const updateCommentList = () => {
+    setFig(fig + 1);
+
+  }
+
   
   return (
       <div className="page">
         <Detail no={no} />
         <CommentList data={data}
-                      fig={fig} 
-                      setFig={setFig} />
+                      updateCommentList = {updateCommentList} /> 
+                       
         {allowcomment === true &&<CommentForm contentNo={no}
                       fig={fig} 
                       setFig={setFig} />}

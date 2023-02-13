@@ -75,7 +75,7 @@ public class GroupApiController {
 
             }
 
-            System.out.println("지랄마라진짜 ");
+            System.out.println("후으...");
 
 
     return new ResponseEntity(body, headers, status);
@@ -116,7 +116,7 @@ public class GroupApiController {
     @PostMapping("/api/update-group")
     public ResponseEntity update_group(@RequestBody GroupDto groupDto,
                                        @RequestParam String oldGroupName){
-        System.out.println("어ㅠ휴");
+        System.out.println("시작");
         HttpHeaders headers = new HttpHeaders();
         Map<String, String> body = new HashMap<>();
         HttpStatus status = HttpStatus.NO_CONTENT; // 보낼 내용이 없다 수정 잘 댓다  204 -> 수정이 정상적으로 완료됬음을 의미
@@ -202,9 +202,6 @@ public class GroupApiController {
     @PostMapping("/api/addTag")
     public ResponseEntity<TagDto> addTag(@RequestBody TagDto tagDto) {
         TagDto addTag = tagService.createTag(tagDto);
-        System.out.println("태그add");
-        System.out.println("gggggg");
-        System.out.println("gggggdddg");
 
         if (addTag != null) {
             return new ResponseEntity<>(addTag, HttpStatus.OK);

@@ -7,7 +7,6 @@ import BoardList from "../components/Group/Board/BoardList/BoardList";
 import { useState } from "react";
 //import SelectList from "../components/SelectComponentForModify";
 import SelectList from "../components/Group/Board/SelectComponentForModify";
-import { EditableSelect } from "./ddd";
 import DDD from "./ddd";
 import InviteUserModal from "../components/Group/Modals/InviteUserModal";
 import NoteAllUserModal from "../components/Group/Modals/NoteAllUserModal";
@@ -170,10 +169,12 @@ const ManageGroup  = () => {
             <div className="dam-managegroup-ddd">
               <DDD data = { forMody }/>
               </div>
+            <div>
              {!Admin && <button className="dambutton" onClick={ () => setShowModal(true)}>INVITE</button>}
             {showModal && (
                 <InviteUserModal  groupname = {groupname} groupleader = {groupleader} data = {memberListData} onClose={() => setShowModal(false)} />
             )}
+            </div>
             <div>
              {!Admin && <button className="dambutton" onClick={ () => setShowModalForNote(true)}>전체쪽지</button>}
               {showModalForNote && (

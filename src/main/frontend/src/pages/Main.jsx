@@ -8,10 +8,13 @@ import "../DamCss/Page/page.css";
 
 const Main = () => {
     const [data, setData] = useState("");
+    const [groupLeader, setGroupLeader] = useState("");
     const authCtx = useContext(AuthContext);
     const token = authCtx.token;
+    const userid = authCtx.userObj.userid;
     const [showModal, setShowModal] = useState(false);
     const [fig, setFig ] = useState(0);
+    const [Admin, setAdmin] = useState(false);
 
 
 
@@ -31,9 +34,11 @@ const Main = () => {
               }else {
             
             setData(response.data.data);
-              };
-        };
+              }
+            };
+        
         getGroupList();
+        
     }, [fig]);
 
 
